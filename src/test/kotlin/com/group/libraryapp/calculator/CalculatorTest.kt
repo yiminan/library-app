@@ -22,4 +22,13 @@ class CalculatorTest {
 
         assertEquals(Calculator(2), calculator)
     }
+
+    @Test
+    fun multiplyTest() {
+        val calculator = Calculator(5)
+
+        calculator.multiply(3)
+
+        assertEquals(Calculator(15), calculator)
+    }
 }
