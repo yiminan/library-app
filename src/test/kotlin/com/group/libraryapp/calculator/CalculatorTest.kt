@@ -31,4 +31,13 @@ class CalculatorTest {
 
         assertEquals(Calculator(15), calculator)
     }
+
+    @Test
+    fun divideTest() {
+        val calculator = Calculator(5)
+
+        calculator.divide(3)
+
+        assertEquals(Calculator(1), calculator)
+    }
 }
