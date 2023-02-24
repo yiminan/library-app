@@ -22,13 +22,19 @@ class CalculatorTest {
         assertEquals(Calculator(result), calculator)
     }
 
-    @Test
-    fun subtractTest() {
-        val calculator = Calculator(5)
+    @ParameterizedTest
+    @CsvSource(
+        "5, 3, 2",
+        "5, 0, 5",
+        "0, 5, -5",
+        "0, 0, 0"
+    )
+    fun subtractTest(operand1: Int, operand2: Int, result: Int) {
+        val calculator = Calculator(operand1)
 
-        calculator.subtract(3)
+        calculator.subtract(operand2)
 
-        assertEquals(Calculator(2), calculator)
+        assertEquals(Calculator(result), calculator)
     }
 
     @Test
