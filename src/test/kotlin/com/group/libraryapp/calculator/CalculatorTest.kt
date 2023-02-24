@@ -2,16 +2,24 @@ package com.group.libraryapp.calculator
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class CalculatorTest {
 
-    @Test
-    fun addTest() {
-        val calculator = Calculator(5)
+    @ParameterizedTest
+    @CsvSource(
+        "5, 3, 8",
+        "5, 0, 5",
+        "0, 5, 5",
+        "0, 0, 0"
+    )
+    fun addTest(operand1: Int, operand2: Int, result: Int) {
+        val calculator = Calculator(operand1)
 
-        calculator.add(3)
+        calculator.add(operand2)
 
-        assertEquals(Calculator(8), calculator)
+        assertEquals(Calculator(result), calculator)
     }
 
     @Test
