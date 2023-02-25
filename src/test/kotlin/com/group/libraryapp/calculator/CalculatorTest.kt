@@ -52,12 +52,17 @@ class CalculatorTest {
         assertEquals(Calculator(result), calculator)
     }
 
-    @Test
-    fun divideTest() {
-        val calculator = Calculator(5)
+    @ParameterizedTest
+    @CsvSource(
+        "5, 3, 1",
+        "5, 1, 5",
+        "0, 5, 0"
+    )
+    fun divideTest(operand1: Int, operand2: Int, result: Int) {
+        val calculator = Calculator(operand1)
 
-        calculator.divide(3)
+        calculator.divide(operand2)
 
-        assertEquals(Calculator(1), calculator)
+        assertEquals(Calculator(result), calculator)
     }
 }
