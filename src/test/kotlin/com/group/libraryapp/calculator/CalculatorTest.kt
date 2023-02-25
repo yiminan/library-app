@@ -1,5 +1,6 @@
 package com.group.libraryapp.calculator
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -64,5 +65,18 @@ class CalculatorTest {
         calculator.divide(operand2)
 
         assertEquals(Calculator(result), calculator)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        "0, 0",
+        "5, 0"
+    )
+    fun divideByZeroTest(operand1: Int, operand2: Int) {
+        val calculator = Calculator(operand1)
+
+        Assertions.assertThrows(IllegalArgumentException::class.java) {
+            calculator.divide(operand2)
+        }
     }
 }
