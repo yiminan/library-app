@@ -37,13 +37,19 @@ class CalculatorTest {
         assertEquals(Calculator(result), calculator)
     }
 
-    @Test
-    fun multiplyTest() {
-        val calculator = Calculator(5)
+    @ParameterizedTest
+    @CsvSource(
+        "5, 3, 15",
+        "5, 0, 0",
+        "0, 5, 0",
+        "0, 0, 0"
+    )
+    fun multiplyTest(operand1: Int, operand2: Int, result: Int) {
+        val calculator = Calculator(operand1)
 
-        calculator.multiply(3)
+        calculator.multiply(operand2)
 
-        assertEquals(Calculator(15), calculator)
+        assertEquals(Calculator(result), calculator)
     }
 
     @Test
