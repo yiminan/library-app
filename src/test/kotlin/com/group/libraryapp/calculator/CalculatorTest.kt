@@ -69,7 +69,8 @@ class CalculatorTest {
     @ParameterizedTest
     @CsvSource(
         "0, 0",
-        "5, 0"
+        "5, 0",
+        "-1, 0"
     )
     fun divideByZeroTest(operand1: Int, operand2: Int) {
         val calculator = Calculator(operand1)
