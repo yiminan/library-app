@@ -1,5 +1,8 @@
 package com.group.libraryapp.calculator
 
+/**
+ * Practice example class
+ */
 class Calculator(
     private var number: Int
 ) {
