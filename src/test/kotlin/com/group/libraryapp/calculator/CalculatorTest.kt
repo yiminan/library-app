@@ -2,9 +2,11 @@ package com.group.libraryapp.calculator
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
+@DisplayName("Calculator Tests")
 class CalculatorTest {
 
     @ParameterizedTest
