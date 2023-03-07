@@ -11,7 +11,7 @@ class JunitTest {
     companion object {
         @JvmStatic
         @BeforeAll
-        fun beforeAll(): Unit {
+        fun beforeAll() {
             println("beforeAll")
         }
     }
