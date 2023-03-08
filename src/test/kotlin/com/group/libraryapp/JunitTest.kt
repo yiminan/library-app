@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 @DisplayName("Junit Test")
 class JunitTest {
 
-    companion object {
+    private companion object {
         @JvmStatic
         @BeforeAll
         fun beforeAll() {
