@@ -22,12 +22,7 @@ class JunitTest {
     }
 
     @Test
-    fun test1() {
-        println("test1")
-    }
-
-    @Test
-    fun test2() {
-        println("test2")
+    fun test() {
+        println("test")
     }
 }
