@@ -1,16 +1,23 @@
 package com.group.libraryapp.dto.user.request;
 
+import org.jetbrains.annotations.NotNull;
+
 public class UserUpdateRequest {
 
-  private long id;
-  private String name;
+    private long id;
+    private String name;
 
-  public long getId() {
-    return id;
-  }
+    public UserUpdateRequest(long id, @NotNull String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 
 }
