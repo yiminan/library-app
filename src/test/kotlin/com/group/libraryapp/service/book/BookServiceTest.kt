@@ -4,12 +4,14 @@ import com.group.libraryapp.domain.book.Book
 import com.group.libraryapp.domain.book.BookRepository
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
+import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
 import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -53,5 +55,19 @@ class BookServiceTest @Autowired constructor(
         assertThat(results[0].bookName).isEqualTo("Communism")
         assertThat(results[0].user.id).isEqualTo(savedUser.id)
         assertThat(results[0].isReturn).isFalse
+    }
+
+    @Test
+    fun loanBookWithIsNotReturnTest() {
+        // given
+        bookRepository.save(Book("Communism"))
+        val savedUser = userRepository.save(User("Ryan", null))
+        userLoanHistoryRepository.save(UserLoanHistory(savedUser, "Communism", false))
+        val request = BookLoanRequest("Ryan", "Communism")
+        // when & then
+        val message = assertThrows<IllegalArgumentException> {
+            bookService.loanBook(request)
+        }.message
+        assertThat(message).isEqualTo("진작 대출되어 있는 책입니다")
     }
 }
