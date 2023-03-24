@@ -1,8 +1,14 @@
 package com.group.libraryapp.service.book
 
+import com.group.libraryapp.domain.book.Book
 import com.group.libraryapp.domain.book.BookRepository
+import com.group.libraryapp.domain.user.User
+import com.group.libraryapp.domain.user.UserRepository
+import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
+import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -11,7 +17,15 @@ import org.springframework.boot.test.context.SpringBootTest
 class BookServiceTest @Autowired constructor(
     private val bookService: BookService,
     private val bookRepository: BookRepository,
+    private val userRepository: UserRepository,
+    private val userLoanHistoryRepository: UserLoanHistoryRepository,
 ) {
+
+    @AfterEach
+    fun afterEach() {
+        bookRepository.deleteAll()
+        userRepository.deleteAll()
+    }
 
     @Test
     fun saveBookTest() {
@@ -23,5 +37,21 @@ class BookServiceTest @Autowired constructor(
         val books = bookRepository.findAll()
         assertThat(books).hasSize(1)
         assertThat(books[0].name).isEqualTo("Communism")
+    }
+
+    @Test
+    fun loanBookTest() {
+        // given
+        bookRepository.save(Book("Communism"))
+        val savedUser = userRepository.save(User("Ryan", null))
+        val request = BookLoanRequest("Ryan", "Communism")
+        // when
+        bookService.loanBook(request)
+        // then
+        val results = userLoanHistoryRepository.findAll()
+        assertThat(results).hasSize(1)
+        assertThat(results[0].bookName).isEqualTo("Communism")
+        assertThat(results[0].user.id).isEqualTo(savedUser.id)
+        assertThat(results[0].isReturn).isFalse
     }
 }
