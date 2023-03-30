@@ -39,7 +39,7 @@ public class User {
         this.name = name;
     }
 
-    public void loanBook(Book book) {
+    public void loanBook(JavaBook book) {
         this.userLoanHistories.add(new UserLoanHistory(this, book.getName(), false));
     }
 
