@@ -1,6 +1,6 @@
 package com.group.libraryapp.service.book
 
-import com.group.libraryapp.domain.book.Book
+import com.group.libraryapp.domain.book.JavaBook
 import com.group.libraryapp.domain.book.BookRepository
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
@@ -45,7 +45,7 @@ class BookServiceTest @Autowired constructor(
     @Test
     fun loanBookTest() {
         // given
-        bookRepository.save(Book("Communism"))
+        bookRepository.save(JavaBook("Communism"))
         val savedUser = userRepository.save(User("Ryan", null))
         val request = BookLoanRequest("Ryan", "Communism")
         // when
@@ -61,7 +61,7 @@ class BookServiceTest @Autowired constructor(
     @Test
     fun loanBookWithIsNotReturnTest() {
         // given
-        bookRepository.save(Book("Communism"))
+        bookRepository.save(JavaBook("Communism"))
         val savedUser = userRepository.save(User("Ryan", null))
         userLoanHistoryRepository.save(UserLoanHistory(savedUser, "Communism", false))
         val request = BookLoanRequest("Ryan", "Communism")
@@ -75,7 +75,7 @@ class BookServiceTest @Autowired constructor(
     @Test
     fun returnBookTest() {
         // given
-        bookRepository.save(Book("Communism"))
+        bookRepository.save(JavaBook("Communism"))
         val savedUser = userRepository.save(User("Ryan", null))
         userLoanHistoryRepository.save(UserLoanHistory(savedUser, "Communism", false))
         val request = BookReturnRequest("Ryan", "Communism")
