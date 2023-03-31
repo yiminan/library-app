@@ -16,6 +16,9 @@ import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
+/**
+ * Service Test for 'Book'
+ */
 @SpringBootTest
 class BookServiceTest @Autowired constructor(
     private val bookService: BookService,
