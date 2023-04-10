@@ -28,10 +28,17 @@ public class BookService {
         this.userLoanHistoryRepository = userLoanHistoryRepository;
     }
 
+    /**
+     * 돈을 보낸다.
+     *
+     * 101만원에서 1만원을 보낸다. -> 상대방은 1만원을 받고, 나는 1만원이 줄어든다.
+     */
     @Transactional
-    public void saveBook(BookRequest request) {
-        Book newBook = new Book(request.getName(), null);
-        bookRepository.save(newBook);
+    public void sendMoney(Money won) {
+        won = 10_000
+        // 1. 이민에게 1만원을 보낸다.
+        // 2. 여울이에게 1만원을 빼았는다.
+        // 3. 이민이에게 1만원을 넣어준다.
     }
 
     @Transactional
