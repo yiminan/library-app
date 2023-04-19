@@ -12,6 +12,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class BookService {
 
@@ -47,6 +49,8 @@ public class BookService {
     }
 
     public void saveBook(@NotNull BookRequest request) {
-        // todo: implement codes
+        Book findBook = bookRepository.findByName(request.getName())
+                .orElseThrow(() -> new NoSuchElementException(String.format("(%s)는 존재하지 않는 책입니다", request.getName())));
+
     }
 }
