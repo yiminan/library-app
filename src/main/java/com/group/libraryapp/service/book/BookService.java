@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -49,8 +50,9 @@ public class BookService {
     }
 
     public void saveBook(@NotNull BookRequest request) {
-        Book findBook = bookRepository.findByName(request.getName())
-                .orElseThrow(() -> new NoSuchElementException(String.format("(%s)는 존재하지 않는 책입니다", request.getName())));
-
+        Optional<Book> findBook = bookRepository.findByName(request.getName());
+        if(findBook.isEmpty()) {
+            bookRepository.save(new Book(request.getName()));
+        }
     }
 }
