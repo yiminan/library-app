@@ -13,9 +13,10 @@ class Book(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,// default 값이 있는 경우 아래에 배열하는 것이 기본 컨벤션
 ) {
+    constructor(name: String) : this(name = name, id = null)
 
     init {
-        if(name.isBlank()) {
+        if (name.isBlank()) {
             throw IllegalArgumentException("Book name must not be blank")
         }
     }
