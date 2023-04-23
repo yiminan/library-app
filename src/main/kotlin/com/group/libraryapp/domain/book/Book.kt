@@ -13,7 +13,7 @@ class Book(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null, // default 값이 있는 경우 아래에 배열하는 것이 기본 컨벤션
 ) {
-    constructor(name: String) : this(name = name, id = null)
+    constructor(name: String) : this(name = name, id = null) // 부 생성자 활용 방법
 
     init {
         if (name.isBlank()) {
