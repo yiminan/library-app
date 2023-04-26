@@ -11,9 +11,6 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-/**
- * 사용자 엔티티
- */
 @Entity
 public class User {
 
