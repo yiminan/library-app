@@ -48,6 +48,7 @@ public class BookService {
         user.returnBook(request.getBookName());
     }
 
+    @Transactional
     public void saveBook(@NotNull BookRequest request) {
         Optional<Book> findBook = bookRepository.findByName(request.getName());
         if(findBook.isEmpty()) {
