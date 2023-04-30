@@ -51,7 +51,7 @@ public class BookService {
     @Transactional
     public void saveBook(@NotNull BookRequest request) {
         Optional<Book> findBook = bookRepository.findByName(request.getName());
-        if(findBook.isEmpty()) {
+        if (findBook.isEmpty()) {
             bookRepository.save(new Book(request.getName()));
         }
     }
