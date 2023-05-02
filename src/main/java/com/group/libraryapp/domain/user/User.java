@@ -11,6 +11,9 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+/**
+ * User 도메인
+ */
 @Entity
 public class User {
 
