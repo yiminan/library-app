@@ -20,5 +20,4 @@ data class Book(
             throw IllegalArgumentException("Book name must not be blank")
         }
     }
-
 }
